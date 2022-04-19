@@ -7,7 +7,7 @@
 
 ## Nil pointer deference in Golang
 Nil pointer deference is a trickly error that can lead to memory access violations once a nil pointer or nil interface was passed to a function that does not handle nil. In all cases, it is a tricky programming error that sometimes cannot be found by static analysis; either the function should handle nil, or the caller should not have passed nil to the function.
-This error has been controlled in the {\targetproject}'s go files, and the project is secure against this issue.
+
 
 
 The following snippet of code shows a sample of the problem in practice. This vulnerable code does not expect the type to be nil. For instance, when developers create a function that accepts an interface, they usually want to call the method(s) that the interface defines on the variable:
