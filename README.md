@@ -1,8 +1,8 @@
 # Golang-Security-Vulnerabilities-Explanation
 
-## Author: Dr. Mohamamdreza Ashouri
-## Web: https://ashoury.net
-## Contact: ashourics@protonmail.com
+#### Author: Dr. Mohamamdreza Ashouri
+#### Web: https://ashoury.net
+#### Contact: ashourics@protonmail.com
 
 
 ## Nil pointer deference in Golang
@@ -17,11 +17,11 @@ The following snippet of code shows a sample of the problem in practice. This vu
         
         import "fmt"
         
-        type Named interface {
-            Name() string
+        type X interface {
+            X() string
         }
-        func greeting(thing Named) string {
-            return "Hello " + thing.Name()
+        func greeting(thing X) string {
+            return "Hello " + thing.X()
         }
         
         func main() {
@@ -34,18 +34,11 @@ The following snippet of code shows a sample of the problem in practice. This vu
 Note that the same is true when using a pointer to a type that is used to modify a struct in place. Developers expect to get an instance of the struct when writing a function like this:
 
 ```
+                  
             type myNumber struct {
                 n int
             }
-            func plusOne(number *myNumber) {
-                number.n++
-            }
-            \end{lstlisting}
-            
-            type myNumber struct {
-                n int
-            }
-            func plusOne(number *myNumber) {
+            func addOne(number *myNumber) {
                 number.n++
             }
 ```
@@ -55,7 +48,7 @@ However, when calling it with nil it will compile fine but error at runtime:
 ```
     func main() {
         var number *myNumber
-        plusOne(number)
+        addOne(number)
     }
 ```
 
